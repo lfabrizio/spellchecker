@@ -1,25 +1,20 @@
 const express = require('express');
 const data = require('./data.js');
 const app = express(); // function call of express..
-const port = process.env.PORT; // process.env.PORT || 5000;  
+const port = process.env.PORT || 8080;; // process.env.PORT || 5000;  
 // if running file locally it will not have process.evn.PORT but runs 5000 instead. Testing.....
 
-// .get api call. Anonymous function: request.
-// and respose object and using send method(hello world)
 
 app.use(express.static("public"));
 
-app.get("/data", function(req, res) {
+app.get("/data", (req, res) => {
     const word = req.query.word;
-    if (word === data) {
-        res.send(`Your word: ${word} is in here`);
+    if (data.hasOwnProperty(word)) {
+        res.send(`The word: ${word} is in here`);
+    } else {
+        res.send(`word ${word} does not exist`);
     }
-    // else {
+    
 
-    //     res.send(`Your word: ${word} is not in here`);
-    // }
 
 });
-
-// Call back function.
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
