@@ -1,3 +1,5 @@
+/*global fetch*/
+
 function handleClick(){
  const word = document.getElementById("word").value;
 
